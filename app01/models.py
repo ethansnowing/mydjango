@@ -10,20 +10,21 @@ class Article(models.Model):
     category = models.ForeignKey("Category")
     content = models.TextField(u"文章内容")
     author = models.ForeignKey("UserProfile")
-    pub_date = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateTimeField(blank=True,null=True)
     last_modify = models.DateTimeField(auto_now=True)
     priority = models.IntegerField(u"优先级",default=1000)
     status_choices = (('draft',u"草稿"),
                       ('published',u"已发布"),
                       ('hidden',u"隐藏"))
     status = models.CharField(choices=status_choices,default='published')
+    def __unicode__(self):
+        return self.title
     def clean(self):
         if self.status == 'draft' and self.pub_date is not None:
             raise ValidationError('Draft entries may not have a publish data')
         if self.status == 'published' and self.pub_date is None:
             self.pub_date = datetime.date.today()
-    def __unicode__(self):
-        return self.title
+
 
 class Comment(models.Model):
     article = models.ForeignKey(Article,verbose_name=u"所属文章")
@@ -31,9 +32,13 @@ class Comment(models.Model):
     comment_choices = ((1,u'评论'),
                        (2,u'点赞'))
     comment_type = models.IntergerField(choices=comment_choices,default=1)
-    user = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(auto_now_add=True)
     comment = models.TextField(blank=True,null=True)
     date = models.DateTimeField(auto_now_add=True)
+    def clean(self):
+        if self.comment_type ==1 and self.comment is None:
+            raise ValidationError('评论不能为空')
+
     def __unicode__(self):
         return "%s,P:%s,%s" %(self.articel,self.parent_comment.id,self.comment)
 
