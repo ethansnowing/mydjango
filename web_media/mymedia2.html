@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>媒体库</title>
+<style>
+table,tr
+{
+	border:1px solid black;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+   //页面加载以后执行function
+   $(function(){
+      //给button注册单击事件
+       $("button").click(auto_jc);
+   });
+   
+</script>
+</head>
+<body>
+<form>
+<table>
+<tr>
+  <th>文件</th>
+  <th>XMP</th>
+</tr>
+<tr>
+  <td>视频1</td>
+  <td>
+    <select>
+	  <option>正常</option>
+	  <option>崩溃</option>
+	  <option>返回错误码</option>
+	  <option>失败无返回码</option>
+	</select>
+  </td>
+</tr>
+<tr>
+  <td>视频2</td>
+  <td>
+    <select>
+	  <option>正常</option>
+	  <option>崩溃</option>
+	  <option>返回错误码</option>
+	  <option>失败无返回码</option>
+	</select>
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
