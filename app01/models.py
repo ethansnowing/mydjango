@@ -27,6 +27,46 @@ class Article(models.Model):
             self.pub_date = datetime.date.today()
 
 
+class Video(models.Model):
+    name = models.CharField(max_length=255,null=True,blank=True)    # 视频名称
+    qrcode = models.CharField(max_length=64)   # 二维码的路径名
+    screenshot = models.CharField(max_length=64)    # 缩略图的路径名
+    video_coding = models.CharField(max_length=255)     # 视频编码格式
+    audio_coding = models.CharField(max_length=255)     # 音频编码格式
+    format = models.CharField(max_length=255)       # 视频封装格式
+    suffix = models.CharField(max_length=16)    # 后缀名
+    distinguishability = models.CharField(max_length=16) # 分辨率
+    subtitle = models.BooleanField(default=False)
+    audio_track = models.IntegerField(u"音轨数量",default=1)
+
+    def __str__(self):
+        return self.name
+
+class PlayRecord(models.Model):
+    name = models.ForeignKey(Video,on_delete=models.CASCADE)
+    status_choices = (('0','unknown'),
+                      ('1',u"正常"),
+                      ('2',u"崩溃"),
+                      ('3',u"失败"))
+    status = models.CharField(choices=status_choices,default='0',max_length=16)
+    process_cpu = models.CharField(max_length=16)   # 进程平均占用CPU
+    peak_cpu = models.CharField(max_length=16)      # 进程峰值CPU
+    total_cpu = models.CharField(max_length=16)     # PC总使用CPU
+    process_mem = models.CharField(max_length=16)      # 进程平均占用内存
+    peak_mem = models.CharField(max_length=16)      # 进程峰值内存
+    used_mem = models.CharField(max_length=16)      # 已使用内存
+    used_gpu = models.CharField(max_length=16)      # 已使用gpu
+    peak_gpu = models.CharField(max_length=16)      # 峰值gpu
+    product = models.CharField(max_length=16)       # 产品名
+    version = models.CharField(max_length=16)       # 版本号
+
+    def __str__(self):
+        return self.name
+
+
+
+
+
 class Comment(models.Model):
     article = models.ForeignKey(Article,verbose_name=u"所属文章", on_delete=models.CASCADE)
     parent_comment = models.ForeignKey('self',related_name='my_children',blank=True,null=True,on_delete=models.CASCADE)

@@ -7,6 +7,6 @@ from app01 import views
 urlpatterns = [
     # path('admin/', admin.site.urls),   django 2.0 不用url了
     # path('^$',views.index),
-    path('',views.index),  # 测试
+    path('2',views.index),  # 测试
 
 ]

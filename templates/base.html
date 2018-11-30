@@ -24,17 +24,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
+        {% block top-menu %}
         <ul class="navbar-nav mr-auto">
+          {% for category in category_list %}
           <li class="nav-item active">
-            <a class="nav-link" href="http://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">{{ category.name }} <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="http://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Disabled</a>
-          </li>
+          <!--<li class="nav-item">-->
+            <!--<a class="nav-link disabled" href="http://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Disabled</a>-->
+          <!--</li>-->
+        {% endfor %}
         </ul>
+        {% endblock %}
         <form class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -44,9 +45,36 @@
 
     <main role="main" class="container">
       <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser's viewport.</p>
-        <a class="btn btn-lg btn-primary" href="http://getbootstrap.com/docs/4.1/components/navbar/" role="button">View navbar docs »</a>
+        <form>
+          <table>
+          <tr>
+            <th>文件</th>
+            <th>XMP</th>
+          </tr>
+          <tr>
+            <td>视频1</td>
+            <td>
+              <select>
+                <option>正常</option>
+                <option>崩溃</option>
+                <option>返回错误码</option>
+                <option>失败无返回码</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>视频2</td>
+            <td>
+              <select>
+                <option>正常</option>
+                <option>崩溃</option>
+                <option>返回错误码</option>
+                <option>失败无返回码</option>
+              </select>
+            </td>
+          </tr>
+          </table>
+        </form>
       </div>
     </main>
 
