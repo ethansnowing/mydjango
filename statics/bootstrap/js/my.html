@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="clipboard.min.js"></script>
+<script type="text/javascript">
+	myurl = "111.jpg"
+    function showPic(e,sUrl){ 
+                            var x,y; 
+                            x = e.clientX; 
+                            y = e.clientY; 
+                            document.getElementById("Layer1").style.left = x+2+'px'; 
+                            document.getElementById("Layer1").style.top = y+2+'px'; 
+                            document.getElementById("Layer1").innerHTML = "<img border='0' src='111.jpg'>";
+                            document.getElementById("Layer1").style.display = ""; 
+                            } 
+    function hiddenPic(){ 
+                            document.getElementById("Layer1").innerHTML = ""; 
+                            document.getElementById("Layer1").style.display = "none"; 
+                        } 
+</script>
+</head>
+<body>
+
+    <div id="box" class="col-md-4 col-md-offset-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-info" colspan="4">
+                        天涯书城书目
+                    </th>
+                </tr>
+                <tr>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>售价</th>
+                    <th>书类</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr onmouseout="hiddenPic()" onmousemove="showPic('111.jpg')">
+                    <td>
+                        新华字典
+                    </td>
+                    <td>
+                        新华出版社
+                    </td>
+                    <td>
+                        32.5
+                    </td>
+                    <td>
+                        工具书
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="Layer1" style="display:none;position:absolute;z-index:1;"></div>
+	
+	<button class="btn" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
+		Copy to clipboard
+	</button>
+
+</body>
+</html>

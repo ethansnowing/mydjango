@@ -29,6 +29,9 @@ class Article(models.Model):
 
 class Video(models.Model):
     name = models.CharField(max_length=255,null=True,blank=True)    # 视频名称
+    httpurl = models.CharField(max_length=255)      # 视频httpurl
+    ftpurl = models.CharField(max_length=255)       # 视频ftpur
+    path = models.CharField(max_length=255)     # 视频路径
     qrcode = models.CharField(max_length=64)   # 二维码的路径名
     screenshot = models.CharField(max_length=64)    # 缩略图的路径名
     video_coding = models.CharField(max_length=255)     # 视频编码格式
