@@ -20,5 +20,5 @@ urlpatterns = [
     # path('admin/', admin.site.urls), django 2.0 不用url了，用path
     path('admin/',admin.site.urls),
     # path('app01/', include(('app01.urls','aaa' ), namespace='aaa')),
-    path('app01/', include('app01.urls' )),
+    path('app01/', include('app01.urls')),
 ]

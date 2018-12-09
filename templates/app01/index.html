@@ -1,2 +1,30 @@
 {% extends 'base.html' %}
-<!--hello world!  # 测试-->
+hello world!  # 测试
+{% block top-menu %}
+<ul class="navbar-nav mr-auto">
+  {% for category in category_list %}
+  <li class="nav-item active">
+    <a class="nav-link" href="#">{{ category.name }} <span class="sr-only">(current)</span></a>
+  </li>
+  <!--<li class="nav-item">-->
+    <!--<a class="nav-link disabled" href="http://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Disabled</a>-->
+  <!--</li>-->
+{% endfor %}
+</ul>
+{% endblock %}
+
+{% block videolist %}
+    {% for video in video_list %}
+    <tr>
+    <td>{{video.name}}</td>
+    <td><button class="btn btn-success httpurl" data-clipboard-text="{{video.httpurl}}">复制url</button></td>
+        <script>
+          var clipboard = new ClipboardJS('.httpurl');
+         </script>
+    <td onmouseout="hiddenPic()" onmousemove="showPic(event,'{{video.id}}.png')">
+      <button class="btn btn-secondary">显示</button>
+    </td>
+    <div id="Layer1" style="display:none;position:absolute;z-index:1;"></div>
+    </tr>
+    {% endfor %}
+{% endblock %}
