@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 from app01 import models
 import os
+from django.db import connection
 # Create your views here.
 
 category_list = models.Category.objects.filter(set_as_top_menu=True).order_by('position_index')
@@ -21,7 +22,11 @@ def index(request):
 
 def hehe(request):
     print('aaaaa')
-    return render(request,'app01/hehe.html')
+    cursor = connection.cursor()
+    # list = cursor.execute('select * from (select * from video order by name desc) where rownum <=20')
+    list = cursor.execute('select * from app01_video where id<=20')
+    # return render(request,'app01/hehe.html')
+    return HttpResponse(list)
 
 def showImg(request):
     return render(request,'app01/index.html')
