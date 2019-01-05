@@ -38,7 +38,12 @@ class Video(models.Model):
     audio_coding = models.CharField(max_length=255)     # 音频编码格式
     format = models.CharField(max_length=255)       # 视频封装格式
     suffix = models.CharField(max_length=16)    # 后缀名
-    distinguishability = models.CharField(max_length=16) # 分辨率
+    distinguishability = models.CharField(max_length=16,blank=True) # 分辨率
+    width = models.IntegerField(u'宽',blank=True)     # 宽
+    height = models.IntegerField(u'高',blank=True)        # 高
+    avg_frame_rate = models.DecimalField(u'平均帧率', max_digits=5, decimal_places=2, blank=True)      #平均帧率
+    duration = models.IntegerField(u'时长', blank=True)       # 时长
+    bit_rate = models.IntegerField(u'码率', blank=True)       # 码率
     subtitle = models.BooleanField(default=False)
     audio_track = models.IntegerField(u"音轨数量",default=1)
 

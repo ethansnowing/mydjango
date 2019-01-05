@@ -14,17 +14,37 @@ hello world!  # 测试
 {% endblock %}
 
 {% block videolist %}
-    {% for video in video_list %}
+    {% for video in video_list_page %}
     <tr>
     <td>{{video.name}}</td>
     <td><button class="btn btn-success httpurl" data-clipboard-text="{{video.httpurl}}">复制url</button></td>
         <script>
           var clipboard = new ClipboardJS('.httpurl');
          </script>
-    <td onmouseout="hiddenPic()" onmousemove="showPic(event,'{{video.id}}.png')">
+    <td onmouseout="hiddenPic()" onmousemove="showPic(event,'{{video.id}}.jpg')">
       <button class="btn btn-secondary">显示</button>
     </td>
     <div id="Layer1" style="display:none;position:absolute;z-index:1;"></div>
     </tr>
     {% endfor %}
+{% endblock %}
+
+{% block pagination %}
+<div class="page">
+    <ul class="pagination">
+        {% if video_list_page.has_previous %}
+            <li><a href="?page=1">首页</a></li>
+            <li><a href="?page={{ video_list_page.previous_page_number }}">上一页</a></li>
+        {% endif %}
+
+        <span class="current">
+            Page {{ video_list_page.number }} of {{ video_list_page.paginator.num_pages }}.
+        </span>
+
+        {% if video_list_page.has_next %}
+            <li><a href="?page={{ video_list_page.next_page_number }}">下一页</a></li>
+            <li><a href="?page={{ video_list_page.paginator.num_pages }}">末尾</a></li>
+        {% endif %}
+    </ul>
+</div>
 {% endblock %}
