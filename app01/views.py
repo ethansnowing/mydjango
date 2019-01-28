@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponse
 from app01 import models
 import os
-
+from django.core.paginator import Paginator
 from django.db import connection
 # Create your views here.
 
