@@ -29,23 +29,23 @@ class Article(models.Model):
 
 class Video(models.Model):
     name = models.CharField(max_length=255,null=True,blank=True)    # 视频名称
-    httpurl = models.CharField(max_length=255)      # 视频httpurl
-    ftpurl = models.CharField(max_length=255)       # 视频ftpur
-    path = models.CharField(max_length=255)     # 视频路径
-    qrcode = models.CharField(max_length=64)   # 二维码的路径名
-    screenshot = models.CharField(max_length=64)    # 缩略图的路径名
-    video_coding = models.CharField(max_length=255)     # 视频编码格式
-    audio_coding = models.CharField(max_length=255)     # 音频编码格式
-    format = models.CharField(max_length=255)       # 视频封装格式
-    suffix = models.CharField(max_length=16)    # 后缀名
-    distinguishability = models.CharField(max_length=16,blank=True) # 分辨率
-    width = models.IntegerField(u'宽',blank=True)     # 宽
-    height = models.IntegerField(u'高',blank=True)        # 高
-    avg_frame_rate = models.DecimalField(u'平均帧率', max_digits=5, decimal_places=2, blank=True, default=0.01)      #平均帧率
-    duration = models.IntegerField(u'时长', blank=True)       # 时长
-    bit_rate = models.IntegerField(u'码率', blank=True)       # 码率
-    subtitle = models.BooleanField(default=False)
-    audio_track = models.IntegerField(u"音轨数量",default=1)
+    httpurl = models.CharField(max_length=255,unique=True)      # 视频httpurl
+    ftpurl = models.CharField(max_length=255,null=True)       # 视频ftpur
+    path = models.CharField(max_length=255,null=True)     # 视频路径
+    qrcode = models.CharField(max_length=64,null=True)   # 二维码的路径名
+    screenshot = models.CharField(max_length=64,null=True)    # 缩略图的路径名
+    video_coding = models.CharField(max_length=255,null=True)     # 视频编码格式
+    audio_coding = models.CharField(max_length=255,null=True)     # 音频编码格式
+    format = models.CharField(max_length=255,null=True)       # 视频封装格式
+    suffix = models.CharField(max_length=16,null=True)    # 后缀名
+    distinguishability = models.CharField(max_length=16,blank=True,null=True) # 分辨率
+    width = models.IntegerField(u'宽',blank=True,null=True)     # 宽
+    height = models.IntegerField(u'高',blank=True,null=True)        # 高
+    avg_frame_rate = models.DecimalField(u'平均帧率', max_digits=5, decimal_places=2, blank=True, default=0.01,null=True)      #平均帧率
+    duration = models.IntegerField(u'时长', blank=True,null=True)       # 时长
+    bit_rate = models.IntegerField(u'码率', blank=True,null=True)       # 码率
+    subtitle = models.IntegerField(u'字幕数', blank=True,null=True)      # 字幕数量
+    audio_track = models.IntegerField(u"音轨数量",default=1,null=True)    #音轨数量
 
     def __str__(self):
         return self.name
