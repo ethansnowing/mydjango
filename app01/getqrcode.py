@@ -1,7 +1,7 @@
 #!/usr/bin/env Python
 # -*- coding:utf-8 -*-
 # make_qrcode.py
-# 生成二维码图片
+# 生成二维码图片;更新媒体信息
 # author:Ethan
 
 from django.shortcuts import render
@@ -34,10 +34,14 @@ def update_video_info():
             if not video_list:
                 dbutil = DBUtil()
                 dbutil.add_video(conn, httpurl[:-2])     # ffmpeg是不能有/r/n的
+            else:
+                dbutil = DBUtil()
+                dbutil.update_video(conn, httpurl[:-2])     # ffmpeg是不能有/r/n的
 
 
     conn.commit()
     conn.close()
+
 
 # def make_qrcode(str, file):
 #     img = qrcode.make(str)
